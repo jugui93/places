@@ -1,9 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose  = require('mongoose');
 
 const placesRoutes = require('./routes/places-routes');
 const usersRoutes = require('./routes/users-routes');
-const HttpError = require("./models/http-error")
+const HttpError = require("./models/http-error");
+const { and } = require('sequelize');
+
 
 const app = express();
 
@@ -27,5 +30,12 @@ app.use((error, req, res, next) => {
     res.json({ message: error.message || 'An unknown error ocurred!'})
 })
 
+mongoose
+  .connect("mongodb+srv://juan:juan1234@cluster0.tmhi8iz.mongodb.net/places?retryWrites=true&w=majority")
+  .then(() => {
+    app.listen(5000, console.log("Server running in port 5000"));
+  })
+  .catch((err) => {
+    console.log(err);
+  });
 
-app.listen(5000, console.log('Server running in port 5000'));
