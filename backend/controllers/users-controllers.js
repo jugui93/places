@@ -51,7 +51,7 @@ const signup = async (req, res, next) => {
         name,
         email,
         password,
-        image: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg0",
+        image: "https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg",
         places: []
     });
 
@@ -84,7 +84,7 @@ const login = async (req, res, next) => {
 
     if (!existingUser || existingUser.password !== password) {
       const error = new HttpError(
-        "Logging in failed, please try again later",
+        "Invalid credentials, could not log you in.",
         401
       );
       return next(error);
