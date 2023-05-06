@@ -25,6 +25,7 @@ import './PlaceList.css';
             address={place.address}
             creatorId={place.creator}
             coordinates={place.location}
+            onDelete={props.onDeletePlace}
           />
         ))}
       </ul>

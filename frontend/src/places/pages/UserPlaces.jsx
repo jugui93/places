@@ -15,25 +15,34 @@ const UserPlaces = (props) => {
     useEffect(() => {
       const fetchPlaces = async () => {
         try {
-          const responseData = await sendRequest(`http://localhost:5000/api/places/user/${userId}`);
+          const responseData = await sendRequest(
+            `http://localhost:5000/api/places/user/${userId}`
+          );
           setLoadedPlaces(responseData.places)
         } catch (err) {
           
         };        
       }
       fetchPlaces();
-    },[sendRequest, userId])
+    },[sendRequest, userId]);
 
+    const placeDeletedHandler = deletedPlaceId => {
+      setLoadedPlaces((prevPlaces) =>
+        prevPlaces.filter((place) => place.id !== deletedPlaceId)
+      );
+    };
+      
     return (
       <>
         <ErrorModal error={error} onClear={clearError} />
         {isLoading && (
           <div className="center">
-            
             <LoadingSpinner />
           </div>
         )}
-        {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} />}
+        {!isLoading && loadedPlaces && (
+          <PlaceList items={loadedPlaces} onDeletePlace={placeDeletedHandler} />
+        )}
       </>
     );
 
