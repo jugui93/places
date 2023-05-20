@@ -88,7 +88,7 @@ const createPlace = async (req, res, next) => {
         description,
         location: coordinates,
         address,
-        image:"https://tse1.mm.bing.net/th?id=OIP.VZzwhmZhXKvBXjZvVhie5QHaEg",
+        image:req.file.path,
         creator
     });
 
