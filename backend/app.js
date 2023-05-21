@@ -6,7 +6,6 @@ const mongoose  = require('mongoose');
 const placesRoutes = require('./routes/places-routes');
 const usersRoutes = require('./routes/users-routes');
 const HttpError = require("./models/http-error");
-const { and } = require('sequelize');
 const path = require('path');
 
 
