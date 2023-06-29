@@ -36,6 +36,7 @@ const getPlaceById = async (req, res, next) => {
 const getPlacesByUserId = async (req, res, next) => {
     const userId = req.params.uid;
     // let places
+    let userWithPlaces
     try {
         // places = await Place.find({ creator: userId });
         userWithPlaces = await User.findById(userId).populate('places');
